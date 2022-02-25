@@ -8,8 +8,8 @@ import javax.validation.ConstraintValidatorContext;
 public class StartEndDatesAreInOrderValidator implements ConstraintValidator<StartEndDatesAreInOrder, Schedulable> {
 
     @Override
-    public boolean isValid(Schedulable o, ConstraintValidatorContext context) {
-        return o.getStartDate().isBefore(o.getEndDate());
+    public boolean isValid(Schedulable s, ConstraintValidatorContext context) {
+        return s.getStartDate().isBefore(s.getEndDate());
     }
 
 }
