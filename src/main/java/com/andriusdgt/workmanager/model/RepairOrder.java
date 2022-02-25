@@ -1,5 +1,7 @@
 package com.andriusdgt.workmanager.model;
 
+import com.andriusdgt.workmanager.validation.AnalysisDateIsOnSchedule;
+import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RepairOrder {
+@StartEndDatesAreInOrder
+@AnalysisDateIsOnSchedule
+public class RepairOrder implements Schedulable {
 
     @Id
     @GeneratedValue

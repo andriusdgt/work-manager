@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class ControllerAdvice {
+public class ControllerExceptionAdvice {
 
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<ErrorResponse> invalidFormatException(final InvalidFormatException e) {
@@ -33,9 +33,11 @@ public class ControllerAdvice {
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
+            String subjectName = error.getObjectName();
+            if (error instanceof FieldError)
+                subjectName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            errors.put(subjectName, errorMessage);
         });
         return errors;
     }

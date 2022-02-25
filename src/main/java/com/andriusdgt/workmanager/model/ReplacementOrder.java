@@ -1,5 +1,7 @@
 package com.andriusdgt.workmanager.model;
 
+import com.andriusdgt.workmanager.validation.PartInventoryNumberNotEmpty;
+import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ReplacementOrder {
+@StartEndDatesAreInOrder
+public class ReplacementOrder implements Schedulable {
 
     @Id
     @GeneratedValue
@@ -55,6 +58,7 @@ public class ReplacementOrder {
 
     @NotNull
     @OneToMany
+    @PartInventoryNumberNotEmpty
     private List<Part> parts;
 
 }
