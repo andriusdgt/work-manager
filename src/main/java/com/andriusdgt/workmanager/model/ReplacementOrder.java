@@ -1,5 +1,6 @@
 package com.andriusdgt.workmanager.model;
 
+import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.PartInventoryNumberNotEmpty;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.GroupSequence;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -21,14 +24,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@StartEndDatesAreInOrder
+@StartEndDatesAreInOrder(groups = ExtendedValidationGroup.class)
+@GroupSequence({ReplacementOrder.class, ExtendedValidationGroup.class})
 public class ReplacementOrder implements Schedulable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull(message = "must be a valid department")
     @Enumerated(EnumType.STRING)
     private Department department;
 
@@ -41,6 +45,7 @@ public class ReplacementOrder implements Schedulable {
     private LocalDate endDate;
 
     @NotNull
+    @NotEmpty
     @JsonProperty("factory_name")
     private String factoryName;
 
@@ -58,7 +63,7 @@ public class ReplacementOrder implements Schedulable {
 
     @NotNull
     @OneToMany
-    @PartInventoryNumberNotEmpty
+    @PartInventoryNumberNotEmpty(groups = ExtendedValidationGroup.class)
     private List<Part> parts;
 
 }

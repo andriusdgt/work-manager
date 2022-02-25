@@ -1,13 +1,14 @@
 package com.andriusdgt.workmanager.model;
 
-import com.andriusdgt.workmanager.validation.AnalysisDateIsOnSchedule;
-import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
+import com.andriusdgt.workmanager.validation.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.GroupSequence;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -21,15 +22,17 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@StartEndDatesAreInOrder
-@AnalysisDateIsOnSchedule
+@StartEndDatesAreInOrder(groups = ExtendedValidationGroup.class)
+@AnalysisDateIsOnSchedule(groups = ExtendedValidationGroup.class)
+@TestDateIsOnSchedule(groups = ExtendedValidationGroup.class)
+@GroupSequence({RepairOrder.class, ExtendedValidationGroup.class})
 public class RepairOrder implements Schedulable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull(message = "must be a valid department")
     @Enumerated(EnumType.STRING)
     private Department department;
 
@@ -50,6 +53,7 @@ public class RepairOrder implements Schedulable {
     private LocalDate testDate;
 
     @NotNull
+    @NotEmpty
     @JsonProperty("responsible_person")
     private String responsiblePerson;
 

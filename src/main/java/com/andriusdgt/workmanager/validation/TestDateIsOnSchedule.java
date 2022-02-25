@@ -12,10 +12,10 @@ import static java.lang.annotation.ElementType.TYPE;
 @Target({TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = AnalysisDateIsOnScheduleValidator.class)
-public @interface AnalysisDateIsOnSchedule {
+@Constraint(validatedBy = TestDateIsOnScheduleValidator.class)
+public @interface TestDateIsOnSchedule {
 
-    String message() default "Analysis date must be between start and end dates";
+    String message() default "Test date must be between analysis and end dates";
 
     Class<?>[] groups() default {};
 

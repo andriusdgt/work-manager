@@ -5,11 +5,11 @@ import com.andriusdgt.workmanager.model.RepairOrder;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class AnalysisDateIsOnScheduleValidator implements ConstraintValidator<AnalysisDateIsOnSchedule, RepairOrder> {
+public class TestDateIsOnScheduleValidator implements ConstraintValidator<TestDateIsOnSchedule, RepairOrder> {
 
     @Override
     public boolean isValid(RepairOrder ro, ConstraintValidatorContext context) {
-        return ro.getAnalysisDate().isAfter(ro.getStartDate()) && ro.getAnalysisDate().isBefore(ro.getEndDate());
+        return ro.getTestDate().isAfter(ro.getAnalysisDate()) && ro.getTestDate().isBefore(ro.getEndDate());
     }
 
 }

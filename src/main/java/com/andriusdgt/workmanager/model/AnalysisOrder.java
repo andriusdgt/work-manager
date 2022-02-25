@@ -1,5 +1,6 @@
 package com.andriusdgt.workmanager.model;
 
+import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
@@ -19,14 +21,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@StartEndDatesAreInOrder
+@StartEndDatesAreInOrder(groups = ExtendedValidationGroup.class)
+@GroupSequence({AnalysisOrder.class, ExtendedValidationGroup.class})
 public class AnalysisOrder implements Schedulable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull(message = "must be a valid department")
     @Enumerated(EnumType.STRING)
     private Department department;
 
