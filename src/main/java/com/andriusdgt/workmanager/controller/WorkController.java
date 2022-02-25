@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/work-order")
 public class WorkController {
@@ -33,19 +35,19 @@ public class WorkController {
     }
 
     @PutMapping("/analysis")
-    public void createAnalysisOrder(@RequestBody AnalysisOrder analysisOrder) {
+    public void createAnalysisOrder(@Valid @RequestBody AnalysisOrder analysisOrder) {
         partRepository.saveAll(analysisOrder.getParts());
         analysisOrderRepository.save(analysisOrder);
     }
 
     @PutMapping("/repair")
-    public void createRepairOrder(@RequestBody RepairOrder repairOrder) {
+    public void createRepairOrder(@Valid @RequestBody RepairOrder repairOrder) {
         partRepository.saveAll(repairOrder.getParts());
         repairOrderRepository.save(repairOrder);
     }
 
     @PutMapping("/replacement")
-    public void createReplacementOrder(@RequestBody ReplacementOrder replacementOrder) {
+    public void createReplacementOrder(@Valid @RequestBody ReplacementOrder replacementOrder) {
         partRepository.saveAll(replacementOrder.getParts());
         replacementOrderRepository.save(replacementOrder);
     }
