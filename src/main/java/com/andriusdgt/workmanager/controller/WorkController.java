@@ -34,21 +34,21 @@ public class WorkController {
     public void createAnalysisOrder(@Valid @RequestBody AnalysisOrder analysisOrder) {
         partRepository.saveAll(analysisOrder.getParts());
         analysisOrderRepository.save(analysisOrder);
-        saveValidationResult("analysisOrder");
+        saveValidationResult("analysisOrder", analysisOrder.getDepartment().toString());
     }
 
     @PutMapping("/repair")
     public void createRepairOrder(@Valid @RequestBody RepairOrder repairOrder) {
         partRepository.saveAll(repairOrder.getParts());
         repairOrderRepository.save(repairOrder);
-        saveValidationResult("repairOrder");
+        saveValidationResult("repairOrder", repairOrder.getDepartment().toString());
     }
 
     @PutMapping("/replacement")
     public void createReplacementOrder(@Valid @RequestBody ReplacementOrder replacementOrder) {
         partRepository.saveAll(replacementOrder.getParts());
         replacementOrderRepository.save(replacementOrder);
-        saveValidationResult("replacementOrder");
+        saveValidationResult("replacementOrder", replacementOrder.getDepartment().toString());
     }
 
     @GetMapping("/validation/history")
@@ -56,10 +56,11 @@ public class WorkController {
         return validationResultRepository.findAll();
     }
 
-    private void saveValidationResult(String workOrderType){
+    private void saveValidationResult(String workOrderType, String department){
         ValidationResult validationResult = ValidationResult.builder()
                 .date(LocalDate.now())
                 .workOrderType(workOrderType)
+                .department(department)
                 .valid(true)
                 .build();
         validationResultRepository.save(validationResult);
