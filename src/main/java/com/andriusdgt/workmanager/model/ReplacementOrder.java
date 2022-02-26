@@ -4,9 +4,7 @@ import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.PartInventoryNumberNotEmpty;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.GroupSequence;
@@ -23,7 +21,9 @@ import java.util.List;
 @Table(name = "replacement_order")
 @Getter
 @Setter
+@Builder(toBuilder = true)
 @NoArgsConstructor
+@AllArgsConstructor
 @StartEndDatesAreInOrder(groups = ExtendedValidationGroup.class)
 @GroupSequence({ReplacementOrder.class, ExtendedValidationGroup.class})
 public class ReplacementOrder implements Schedulable {

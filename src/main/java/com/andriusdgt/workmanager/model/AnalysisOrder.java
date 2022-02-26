@@ -3,9 +3,7 @@ package com.andriusdgt.workmanager.model;
 import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.GroupSequence;
@@ -20,7 +18,9 @@ import java.util.List;
 @Table(name = "analysis_order")
 @Getter
 @Setter
+@Builder(toBuilder = true)
 @NoArgsConstructor
+@AllArgsConstructor
 @StartEndDatesAreInOrder(groups = ExtendedValidationGroup.class)
 @GroupSequence({AnalysisOrder.class, ExtendedValidationGroup.class})
 public class AnalysisOrder implements Schedulable {

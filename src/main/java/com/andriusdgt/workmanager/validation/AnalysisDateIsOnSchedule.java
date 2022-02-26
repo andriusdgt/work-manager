@@ -15,7 +15,7 @@ import static java.lang.annotation.ElementType.TYPE;
 @Constraint(validatedBy = AnalysisDateIsOnScheduleValidator.class)
 public @interface AnalysisDateIsOnSchedule {
 
-    String message() default "Analysis date must be between start and end dates";
+    String message() default "analysis date must be between start and end dates";
 
     Class<?>[] groups() default {};
 
