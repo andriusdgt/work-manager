@@ -25,16 +25,9 @@ public class ControllerExceptionAdvice {
         this.validationResultRepository = validationResultRepository;
     }
 
-    @ExceptionHandler(InvalidFormatException.class)
-    public ResponseEntity<ErrorResponse> invalidFormatException(final InvalidFormatException e) {
-        final String message = e.getClass().getSimpleName() + ": " + e.getMessage();
-        return new ResponseEntity(new ErrorResponse(message), HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> invalidFormatException(final HttpMessageNotReadableException e) {
-        final String message = e.getClass().getSimpleName() + ": " + e.getMessage();
-        return new ResponseEntity(new ErrorResponse(message), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(new ErrorResponse(e.getCause().toString()), HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
