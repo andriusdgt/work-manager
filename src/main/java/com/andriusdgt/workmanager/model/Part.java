@@ -1,6 +1,7 @@
 package com.andriusdgt.workmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class Part {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(hidden = true)
     private long id;
 
     @JsonProperty("inventory_number")

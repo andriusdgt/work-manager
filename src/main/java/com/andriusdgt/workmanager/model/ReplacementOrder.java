@@ -4,6 +4,7 @@ import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.PartInventoryNumberNotEmpty;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class ReplacementOrder implements Schedulable {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(hidden = true)
     private Long id;
 
     @NotNull(message = "must be a valid department")

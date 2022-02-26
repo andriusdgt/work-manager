@@ -10,9 +10,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "validation_result")
-@Getter
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
-@Builder
+@Getter
 public class ValidationResult {
 
     @Id
