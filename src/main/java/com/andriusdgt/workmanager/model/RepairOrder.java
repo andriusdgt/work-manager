@@ -1,7 +1,9 @@
 package com.andriusdgt.workmanager.model;
 
-import com.andriusdgt.workmanager.validation.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.andriusdgt.workmanager.validation.AnalysisDateIsOnSchedule;
+import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
+import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
+import com.andriusdgt.workmanager.validation.TestDateIsOnSchedule;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,24 +41,19 @@ public class RepairOrder implements Schedulable {
     private Department department;
 
     @NotNull
-    @JsonProperty("start_date")
     private LocalDate startDate;
 
     @NotNull
-    @JsonProperty("end_date")
     private LocalDate endDate;
 
     @NotNull
-    @JsonProperty("analysis_date")
     private LocalDate analysisDate;
 
     @NotNull
-    @JsonProperty("test_date")
     private LocalDate testDate;
 
     @NotNull
     @NotEmpty
-    @JsonProperty("responsible_person")
     private String responsiblePerson;
 
     @NotNull

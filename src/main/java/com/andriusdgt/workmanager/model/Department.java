@@ -2,9 +2,9 @@ package com.andriusdgt.workmanager.model;
 
 public enum Department {
 
-    ANALYSIS("GOoD analysis department"),
-    REPAIR("GOoD repair department"),
-    REPLACEMENT("GOoD replacementdepartment");
+    ANALYSIS("GOD analysis department"),
+    REPAIR("GOD repair department"),
+    REPLACEMENT("GOD replacement department");
 
     private final String formatted;
 

@@ -2,7 +2,6 @@ package com.andriusdgt.workmanager.model;
 
 import com.andriusdgt.workmanager.validation.ExtendedValidationGroup;
 import com.andriusdgt.workmanager.validation.StartEndDatesAreInOrder;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,11 +35,9 @@ public class AnalysisOrder implements Schedulable {
     private Department department;
 
     @NotNull
-    @JsonProperty("start_date")
     private LocalDate startDate;
 
     @NotNull
-    @JsonProperty("end_date")
     private LocalDate endDate;
 
     @NotNull
