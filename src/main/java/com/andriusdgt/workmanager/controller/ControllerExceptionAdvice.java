@@ -2,7 +2,6 @@ package com.andriusdgt.workmanager.controller;
 
 import com.andriusdgt.workmanager.model.ValidationResult;
 import com.andriusdgt.workmanager.repository.ValidationResultRepository;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
